@@ -1,0 +1,15 @@
+{
+	"manifest_version": 2,
+	"name": "GitHub Downloads",
+	"version": "1.0",
+	"description": "See the number of downloads next to releases on GitHub",
+	"permissions": [
+		"*://api.github.com/repos/*"
+	],
+	"content_scripts": [
+		{
+			"matches": ["*://*.github.com/*/releases*"],
+			"js": ["./main.js"]
+		}
+	]
+}
