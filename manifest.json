@@ -3,6 +3,12 @@
 	"name": "GitHub Downloads",
 	"version": "1.0",
 	"description": "See the number of downloads next to releases on GitHub",
+	"icons": {
+		"48": "icons/icon-48.png",
+		"128": "icons/icon-128.png",
+		"512": "icons/icon-512.png",
+		"1024": "icons/icon-1024.png"
+	},
 	"permissions": [
 		"*://api.github.com/repos/*"
 	],
