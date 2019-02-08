@@ -38,10 +38,8 @@ function insertDownloadCounts(downloadMap) {
 	for (let link of links) {
 		const assetUrl = link.getAttribute('href');
 		if (assetUrl in downloadMap) {
-			const downloadsElement = document.createElement('small');
-			downloadsElement.innerText = `${downloadMap[assetUrl]} downloads`;
-			downloadsElement.className = 'text-gray flex-shrink-0 ml-3';
-			link.appendChild(downloadsElement);
+			const sizeElement = link.nextElementSibling;
+			sizeElement.innerText += `\u2002\u2002${downloadMap[assetUrl]} downloads`;
 		}
 	}
 }
