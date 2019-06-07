@@ -3,15 +3,15 @@
 	"name": "GitHub Downloads",
 	"version": "1.1",
 	"description": "See the number of downloads next to releases on GitHub",
+	"author": "Samuel Meuli",
+	"homepage_url": "https://github.com/samuelmeuli/activity-hub",
+	"permissions": ["*://api.github.com/repos/*"],
 	"icons": {
-		"48": "icons/icon-48.png",
-		"128": "icons/icon-128.png",
-		"512": "icons/icon-512.png",
-		"1024": "icons/icon-1024.png"
+		"48": "./icons/icon-48.png",
+		"128": "./icons/icon-128.png",
+		"512": "./icons/icon-512.png",
+		"1024": "./icons/icon-1024.png"
 	},
-	"permissions": [
-		"*://api.github.com/repos/*"
-	],
 	"content_scripts": [
 		{
 			"matches": ["*://*.github.com/*/releases*"],

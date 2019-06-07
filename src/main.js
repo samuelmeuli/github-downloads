@@ -35,7 +35,7 @@ function insertDownloadCounts(downloadMap) {
 	const repoContent = document.getElementsByClassName('repository-content')[0];
 	const links = repoContent.getElementsByTagName('a');
 
-	for (let link of links) {
+	for (const link of links) {
 		const assetUrl = link.getAttribute('href');
 		if (assetUrl in downloadMap) {
 			const sizeElement = link.nextElementSibling;
