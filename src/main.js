@@ -1,28 +1,25 @@
-const URL_REGEX = new RegExp('github\.com/(.*?)/(.*?)/');
-
+const URL_REGEX = new RegExp("github.com/(.*?)/(.*?)/");
 
 function loadCache(key) {
 	return JSON.parse(sessionStorage.getItem(key));
 }
 
-
 function setCache(key, value) {
 	sessionStorage.setItem(key, JSON.stringify(value));
 }
 
-
 function fetchReleases(user, repo) {
-	return window.fetch(`https://api.github.com/repos/${user}/${repo}/releases`)
+	return window
+		.fetch(`https://api.github.com/repos/${user}/${repo}/releases`)
 		.then(res => res.json())
 		.catch(err => console.error(`Error fetching GitHub releases: ${err}`));
 }
 
-
 function createDownloadMap(releases) {
 	const downloadMap = {};
-	releases.forEach((release) => {
+	releases.forEach(release => {
 		const { assets } = release;
-		assets.forEach((asset) => {
+		assets.forEach(asset => {
 			const assetUrlRel = asset.browser_download_url.substring(18);
 			downloadMap[assetUrlRel] = asset.download_count;
 		});
@@ -30,20 +27,18 @@ function createDownloadMap(releases) {
 	return downloadMap;
 }
 
-
 function insertDownloadCounts(downloadMap) {
-	const repoContent = document.getElementsByClassName('repository-content')[0];
-	const links = repoContent.getElementsByTagName('a');
+	const repoContent = document.getElementsByClassName("repository-content")[0];
+	const links = repoContent.getElementsByTagName("a");
 
-	for (const link of links) {
-		const assetUrl = link.getAttribute('href');
+	Array.from(links).forEach(link => {
+		const assetUrl = link.getAttribute("href");
 		if (assetUrl in downloadMap) {
 			const sizeElement = link.nextElementSibling;
 			sizeElement.innerText += `\u2002\u2002${downloadMap[assetUrl]} downloads`;
 		}
-	}
+	});
 }
-
 
 async function main() {
 	// Extract repository owner and name
@@ -70,6 +65,5 @@ async function main() {
 	const downloadMap = createDownloadMap(releases);
 	insertDownloadCounts(downloadMap);
 }
-
 
 main();
