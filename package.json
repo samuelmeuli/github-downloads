@@ -1,8 +1,11 @@
 {
 	"private": true,
 	"scripts": {
+		"start": "web-ext run --source-dir ./src --start-url https://github.com/samuelmeuli/mini-diary/releases",
+		"build": "mkdir -p ./dist && zip -r ./dist/extension.zip ./src",
 		"format": "prettier --write",
-		"lint": "eslint --fix --max-warnings 0"
+		"lint:js": "eslint --fix --max-warnings 0",
+		"lint:ext": "web-ext lint --source-dir ./src"
 	},
 	"devDependencies": {
 		"@samuelmeuli/eslint-config": "^2.0.1",
@@ -12,7 +15,8 @@
 		"eslint-plugin-import": "^2.17.2",
 		"husky": "^2.3.0",
 		"lint-staged": "^8.1.7",
-		"prettier": "^1.17.1"
+		"prettier": "^1.17.1",
+		"web-ext": "^3.0.0"
 	},
 	"eslintConfig": {
 		"root": true,
@@ -31,7 +35,7 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"yarn lint",
+			"yarn lint:js",
 			"yarn format",
 			"git add"
 		],
@@ -42,7 +46,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "yarn lint:ext && lint-staged"
 		}
 	}
 }
