@@ -2,7 +2,9 @@
 	"private": true,
 	"scripts": {
 		"start": "web-ext run --source-dir ./src --start-url https://github.com/samuelmeuli/mini-diary/releases",
-		"build": "mkdir -p ./dist && zip -r ./dist/extension.zip ./src",
+		"build": "yarn build:clean && yarn build:ext",
+		"build:clean": "rm -rf ./dist && mkdir -p ./dist",
+		"build:ext": "cd ./src && zip -r ../dist/extension.zip . -x '*.DS_Store'",
 		"format": "prettier --write",
 		"lint:js": "eslint --fix --max-warnings 0",
 		"lint:ext": "web-ext lint --source-dir ./src"
