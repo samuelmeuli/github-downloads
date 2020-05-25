@@ -15,7 +15,7 @@
 	"content_scripts": [
 		{
 			"matches": ["*://*.github.com/*/releases*"],
-			"js": ["./main.js"]
+			"js": ["main.js"]
 		}
 	]
 }
